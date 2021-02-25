@@ -17,7 +17,7 @@ type Arguments struct {
 func ParseArguments() *Arguments {
 	// Override usage
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s:\n", "resotranslate")
+		fmt.Fprintf(os.Stderr, "Usage of %s:\n", "alpc")
 		flag.PrintDefaults()
 	}
 	search := flag.String("search", "", "Search query")
