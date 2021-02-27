@@ -64,6 +64,15 @@ func main() {
 		fmt.Println("Genres:", strings.Join(film.Genres, ","))
 		fmt.Println("Sources:")
 		for _, source := range film.Sources {
+			if source.URL == "" {
+				continue
+			}
+			if args.Voicecover != "" && !strings.Contains(source.Voicecover, args.Voicecover) {
+				continue
+			}
+			if args.Quality != "" && !strings.Contains(source.Quality, args.Quality) {
+				continue
+			}
 			fmt.Println("-", source.Voicecover, source.Quality, source.URL)
 		}
 	} else {
