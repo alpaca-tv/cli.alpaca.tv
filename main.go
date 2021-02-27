@@ -10,8 +10,12 @@ import (
 )
 
 type Arguments struct {
-	Search string
-	Type   string
+	Search     string
+	Series     bool
+	Voicecover string
+	Quality    string
+	Season     int
+	Episode    int
 }
 
 func ParseArguments() *Arguments {
@@ -21,18 +25,26 @@ func ParseArguments() *Arguments {
 		flag.PrintDefaults()
 	}
 	search := flag.String("search", "", "Search query")
-	stype := flag.String("type", "film", "Search type (film,series)")
+	series := flag.Bool("series", false, "Search for series")
+	voicecover := flag.String("voicecover", "", "Voicecover filter")
+	quality := flag.String("quality", "", "Quality filter")
+	season := flag.Int("season", 1, "Series season filter (0 for all)")
+	episode := flag.Int("episode", 1, "Series episode filter (0 for all)")
 	flag.Parse()
 	return &Arguments{
-		Search: *search,
-		Type:   *stype,
+		Search:     *search,
+		Series:     *series,
+		Voicecover: *voicecover,
+		Quality:    *quality,
+		Season:     *season,
+		Episode:    *episode,
 	}
 }
 
 func main() {
 	args := ParseArguments()
 	r := alpclib.Rezka{}
-	if args.Type == "film" {
+	if !args.Series {
 		films, err := r.ListFilms(&alpclib.ListParameters{
 			Search: args.Search,
 		})
@@ -53,6 +65,32 @@ func main() {
 		fmt.Println("Sources:")
 		for _, source := range film.Sources {
 			fmt.Println("-", source.Voicecover, source.Quality, source.URL)
+		}
+	} else {
+		serieslist, err := r.ListSeries(&alpclib.ListParameters{
+			Search: args.Search,
+		})
+		if err != nil {
+			panic(err)
+		}
+		series, err := r.GetSeries(serieslist[0].ID, args.Season, args.Episode)
+		fmt.Println("Name:", series.Name)
+		fmt.Println("Poster:", series.PosterURL)
+		fmt.Println("Description:", series.Description)
+		fmt.Println("Rating:", series.Rating)
+		fmt.Println("Country:", series.Country)
+		fmt.Println("Sources:")
+		for _, source := range series.Sources {
+			if source.URL == "" {
+				continue
+			}
+			if args.Voicecover != "" && !strings.Contains(source.Voicecover, args.Voicecover) {
+				continue
+			}
+			if args.Quality != "" && !strings.Contains(source.Quality, args.Quality) {
+				continue
+			}
+			fmt.Println("-", fmt.Sprintf("s%v:e%v", source.Season, source.Episode), source.Voicecover, source.Quality, source.URL)
 		}
 	}
 }
