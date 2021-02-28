@@ -1,7 +1,7 @@
 github.com/PuerkitoBio/goquery v1.6.1 h1:FgjbQZKl5HTmcn4sKBgvx8vv63nhyhIpv7lJpFGCWpk=
 github.com/PuerkitoBio/goquery v1.6.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
-github.com/alpaca-tv/alpclib v0.0.0-20210227101248-8da8b0080ca5 h1:cH7A0FdWPpGHN2iYM1ElnMW8+qEVQcLcHHAwDgSqZH4=
-github.com/alpaca-tv/alpclib v0.0.0-20210227101248-8da8b0080ca5/go.mod h1:3bTwBdj9iiEPd/piqkp7JaYnlgoLRg6xo/R4Hqvvqo0=
+github.com/alpaca-tv/alpclib v0.0.0-20210228064547-2f2955bfa7b3 h1:NLaLcfgeustCYUgVBHuRFt46CtZuPnKrSRSDd1tV958=
+github.com/alpaca-tv/alpclib v0.0.0-20210228064547-2f2955bfa7b3/go.mod h1:3bTwBdj9iiEPd/piqkp7JaYnlgoLRg6xo/R4Hqvvqo0=
 github.com/andybalholm/cascadia v1.1.0 h1:BuuO6sSfQNFRu1LppgbD25Hr2vLYW25JvxHs5zzsLTo=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
